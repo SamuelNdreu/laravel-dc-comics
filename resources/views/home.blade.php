@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends("layouts.pubblic")
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    @vite('resources/js/app.js')
-
-</head>
-
-<body>
-
-    <h1>home</h1>
-
-</body>
-
-</html>
+@section("main")
+    <section id="serie-cards">
+      <div class="container">
+        <div class="row pt-5">
+          @foreach ($comics as $comic)
+          <a href="" class="col-2 text-white text-decoration-none">
+            <img src="{{$comic->thumb}}" alt=" {{$comic->title}}" class="img-fluid">
+            <div>
+              {{$comic->series}}
+            </div>
+          </a>
+          @endforeach
+        </div>
+      </div>
+    </section>
+@endsection
