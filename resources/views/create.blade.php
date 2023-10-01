@@ -1,7 +1,8 @@
 @extends("layouts.pubblic")
 
 @section("main")
-  <form class="container mb-5">
+<form class="container mb-5" action="{{route('admin.store')}}" method="POST">
+    @csrf
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Title</label>
       <input type="text" class="form-control"name="title">
@@ -30,6 +31,6 @@
       <label for="exampleInputEmail1" class="form-label">Type</label>
       <input type="text" class="form-control"name="type">
     </div>
-    <a href="" class="btn btn-primary" action="">CREATE</a>
+    <button type="submit" class="btn btn-primary">CREATE</button>
   </form>
 @endsection
