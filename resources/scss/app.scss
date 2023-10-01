@@ -1,4 +1,4 @@
-@import "bootstrap";
+@import '~bootstrap/scss/bootstrap';
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 $DC-color: #0282f9;
@@ -76,6 +76,4 @@ footer{
   }
 }
 
-.container{
-  padding: 0 150px;
-}
+
