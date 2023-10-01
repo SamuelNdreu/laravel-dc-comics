@@ -21,5 +21,6 @@ Route::get('/', function () {
 
 Route::get('/', [ComicProductController::class, "index"])->name("home");
 
-Route::get('/{id}', [ComicProductController::class, "show"])->name("info-card");
+Route::get('/{comic}', [ComicProductController::class, "show"])->name("info-card");
+
 
