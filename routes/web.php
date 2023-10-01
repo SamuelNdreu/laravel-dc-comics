@@ -20,3 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/', [ComicProductController::class, "index"])->name("home");
+
+Route::get('/{id}', [ComicProductController::class, "show"])->name("info-card");
+
