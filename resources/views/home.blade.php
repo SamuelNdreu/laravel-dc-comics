@@ -2,6 +2,7 @@
 
 @section("main")
     <section id="serie-cards">
+        
       <div class="container">
         <div class="row pt-5">
           @foreach ($comics as $comic)
