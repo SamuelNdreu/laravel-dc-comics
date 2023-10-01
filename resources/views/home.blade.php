@@ -14,7 +14,7 @@
       </a>
       <div class="position-absolute bottom-0">
         <a href="{{ route('admin.show', $comic->id)}}" class="btn btn-primary btn-sm">Show</a>
-        <a href="" class="btn btn-warning btn-sm">Edit</a>
+        <a href="{{ route('admin.edit', $comic->id)}}" class="btn btn-warning btn-sm">Edit</a>
         <a href="" class="btn btn-danger btn-sm">Cancel</a>
       </div>
     </div>
