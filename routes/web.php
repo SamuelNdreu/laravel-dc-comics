@@ -19,8 +19,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/', [ComicProductController::class, "index"])->name("home");
+Route::get('/', [ComicProductController::class, "index"])->name("admin.index");
+Route::get('/create', [ComicProductController::class, "create"])->name("admin.create");
+Route::get('/{comic}', [ComicProductController::class, "show"])->name("admin.show");
 
-Route::get('/{comic}', [ComicProductController::class, "show"])->name("info.card");
 
 
