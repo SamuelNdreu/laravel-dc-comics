@@ -15,7 +15,11 @@
       <div class="position-absolute bottom-0">
         <a href="{{ route('admin.show', $comic->id)}}" class="btn btn-primary btn-sm">Show</a>
         <a href="{{ route('admin.edit', $comic->id)}}" class="btn btn-warning btn-sm">Edit</a>
-        <a href="" class="btn btn-danger btn-sm">Cancel</a>
+        <form action="{{route('admin.destroy', $comic->id)}}" method="POST">
+            @csrf 
+            @method("DELETE")
+            <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+          </form>
       </div>
     </div>
       @endforeach
