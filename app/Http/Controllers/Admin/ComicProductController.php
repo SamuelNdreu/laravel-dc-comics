@@ -19,6 +19,7 @@ class ComicProductController extends Controller
         $comics= Comic::all();
         return view("admin.adminManagement",compact("comics"));
 
+
     }
 
     /**
@@ -40,6 +41,34 @@ class ComicProductController extends Controller
     public function store(Request $request)
     {
         $data= $request->all();
+
+        $request->validate(
+            [
+                "title" => "required|min:2|max:50",
+                "description"=>"required|min:10",
+                "thumb"=>"required|URL",
+                "price"=>"required|numeric|decimal:2|max:999.99",
+                "series"=>"required|date_format:Y-m-d",
+                "type"=>"required|min:2|max:30"
+            ],
+            [
+                "title.required" => "Title è un campo obbligatorio",
+                "title.min" => "Title richide almeno 2 caratteri",
+                "title.max" => "Title può avere un massimo di 50 caratteri",
+                "description.required" => "Descrition è un campo obbligatorio",
+                "description.min" => "Descrition  richide almeno 10 caratteri",
+                "thumb.required" => "Thumb è un campo obbligatorio",
+                "thumb.URL" => "Thumb deve contenere un URL valido",
+                "price.required" => "Price è un campo obbligatorio",
+                "price.numeric" => "Price deve conterenere solo numeri",
+                "price.decimal" => "Price può contenere solo due numeri decimali?????????",
+                // "price.max" => "Price può avere solo 3 numeri prima dei centesimi!!!!!!!!!!!",
+
+
+
+            ]
+        );
+
 
         $newComic = new Comic();
         $newComic->fill($data);
@@ -85,7 +114,7 @@ class ComicProductController extends Controller
         $data= $request->all();
         $comic->update($data);
 
-        return redirect()->route('admin.comic.index');
+        return redirect()->route("admin.comic.show", $comic->id);
     }
 
     /**

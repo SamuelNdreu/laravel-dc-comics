@@ -2,7 +2,6 @@
 
 @section("main")
   <section id="serie-cards" class="bg-white">
-    @dump(Route::currentRouteName())
     <div class="container">
       <div class="row pt-5 align-items-stretch">
         @foreach ($comics as $comic)
