@@ -40,15 +40,14 @@ class ComicProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data= $request->all();
-
-        $request->validate(
+        $data= $request->validate(
             [
                 "title" => "required|min:2|max:50",
                 "description"=>"required|min:10",
                 "thumb"=>"required|URL",
                 "price"=>"required|numeric|decimal:2|max:999.99",
-                "series"=>"required|date_format:Y-m-d",
+                "series"=>"required|min:2|max:50",
+                "sale_date"=>"required|date_format:Y-m-d",
                 "type"=>"required|min:2|max:30"
             ],
             [
@@ -61,11 +60,16 @@ class ComicProductController extends Controller
                 "thumb.URL" => "Thumb deve contenere un URL valido",
                 "price.required" => "Price è un campo obbligatorio",
                 "price.numeric" => "Price deve conterenere solo numeri",
-                "price.decimal" => "Price può contenere solo due numeri decimali?????????",
-                // "price.max" => "Price può avere solo 3 numeri prima dei centesimi!!!!!!!!!!!",
-
-
-
+                "price.decimal" => "Price può contenere solo due numeri decimali",
+                "price.max" => "Price può avere solo 3 numeri prima dei centesimi",
+                "series.required" => "Series è un campo obbligatorio",
+                "series.required" => "Series richide almeno 2 caratteri",
+                "series.required" => "Series può avere un massimo di 50 caratteri",
+                "sale_date.required" => "Sale date è un campo obbligatorio",
+                "sale_date.date_format" => "Sale date il formato della data deve essere YYYY/mm/dd",
+                "type.required" => "Type date è un campo obbligatorio",
+                "type.min" => "Type richide almeno 2 caratteri",
+                "type.max" => "Type può avere un massimo di 30 caratteri",
             ]
         );
 
@@ -111,7 +115,38 @@ class ComicProductController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $data= $request->all();
+        $data= $request->validate(
+            [
+                "title" => "required|min:2|max:50",
+                "description"=>"required|min:10",
+                "thumb"=>"required|URL",
+                "price"=>"required|numeric|decimal:2|max:999.99",
+                "series"=>"required|min:2|max:50",
+                "sale_date"=>"required|date_format:Y-m-d",
+                "type"=>"required|min:2|max:30"
+            ],
+            [
+                "title.required" => "Title è un campo obbligatorio",
+                "title.min" => "Title richide almeno 2 caratteri",
+                "title.max" => "Title può avere un massimo di 50 caratteri",
+                "description.required" => "Descrition è un campo obbligatorio",
+                "description.min" => "Descrition  richide almeno 10 caratteri",
+                "thumb.required" => "Thumb è un campo obbligatorio",
+                "thumb.URL" => "Thumb deve contenere un URL valido",
+                "price.required" => "Price è un campo obbligatorio",
+                "price.numeric" => "Price deve conterenere solo numeri",
+                "price.decimal" => "Price può contenere solo due numeri decimali",
+                "price.max" => "Price può avere solo 3 numeri prima dei centesimi",
+                "series.required" => "Series è un campo obbligatorio",
+                "series.required" => "Series richide almeno 2 caratteri",
+                "series.required" => "Series può avere un massimo di 50 caratteri",
+                "sale_date.required" => "Sale date è un campo obbligatorio",
+                "sale_date.date_format" => "Sale date il formato della data deve essere YYYY/mm/dd",
+                "type.required" => "Type date è un campo obbligatorio",
+                "type.min" => "Type richide almeno 2 caratteri",
+                "type.max" => "Type può avere un massimo di 30 caratteri",
+            ]
+        );
         $comic->update($data);
 
         return redirect()->route("admin.comic.show", $comic->id);
@@ -127,6 +162,7 @@ class ComicProductController extends Controller
     {
         $comic->delete();
 
-        return redirect()->route('admin.comic.index');
+        return redirect()->route('admin.comic.index')->with('message', "$comic->title è stato cancellato")->with('alert-type', "danger");
+
     }
 }

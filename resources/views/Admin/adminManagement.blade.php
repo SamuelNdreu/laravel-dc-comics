@@ -4,6 +4,12 @@
   <section id="serie-cards" class="bg-white">
     <div class="container">
       <div class="row pt-5 align-items-stretch">
+        @if (session('message'))
+        <div class="col-12 alert alert-{{session('alert-type')}}">
+          {{session('message')}}
+        </div>
+        @endif
+
         @foreach ($comics as $comic)
         <div class="col-2 pb-5 mb-4 position-relative">
           <img src="{{$comic->thumb}}" alt=" {{$comic->title}}" class="img-fluid">

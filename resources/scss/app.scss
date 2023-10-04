@@ -44,26 +44,7 @@ main{
 footer{
   background-color: $footer-color;
 
-  #footer-links{
-    background-image: url("../assets/images/footer-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    .container{
-      height: 330px;     
-
-      div{
-        width: 165px;
-
-        li{
-          font-size: small;
-
-        }
-      }
-    }
-
-
-  }
-
+  
   #footer-bottom{
     button {
       border-color: $DC-color;
