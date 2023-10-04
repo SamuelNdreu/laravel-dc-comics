@@ -23,7 +23,7 @@
         @yield("main")
     </main>
 
-    @include("partials.footer")
+    @yield("footer")
 
     @yield("js")
 </body>
